@@ -1,0 +1,121 @@
+/* Linha animada abaixo do filtro */
+.filter-btn::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 50%;
+  background-color: var(--primary);
+  transition: all 0.3s ease;
+}
+
+.filter-btn.active {
+  color: var(--primary);
+}
+
+.filter-btn.active::after {
+  width: 100%;
+  left: 0;
+}
+
+/* Animação do risco no texto */
+.habit-item.completed .habit-text {
+  color: var(--success-text);
+  text-decoration: line-through;
+  opacity: 0.8;
+}
+
+/* Classe para animação de saída (usada no JS) */
+.habit-item.fall {
+  animation: fallOff 0.5s forwards ease-in;
+  pointer-events: none; /* Evita cliques durante a animação */
+}
+
+/* Estado Concluído */
+.habit-item.completed {
+  background-color: var(--success-bg);
+  border-left: 4px solid var(--success-text);
+}
+
+.habit-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Checkbox personalizado (opcional, mas ajuda na animação) */
+input[type="checkbox"] {
+  accent-color: var(--primary);
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+input[type="checkbox"]:active {
+  transform: scale(0.8);
+}
+
+
+.habit-text {
+  font-weight: 500;
+  transition: all 0.3s;
+  position: relative;
+}
+
+/* ================= KEYFRAMES DE ANIMAÇÃO ================= */
+
+/* Entrada deslizando para cima */
+@keyframes slideUpFade {
+  from {
+      opacity: 0;
+      transform: translateY(30px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+/* Cabeçalho descendo */
+@keyframes fadeDown {
+  from {
+      opacity: 0;
+      transform: translateY(-20px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+/* Badge "estourando" */
+@keyframes popIn {
+  0% {
+      opacity: 0;
+      transform: scale(0.5);
+  }
+  70% {
+      transform: scale(1.2);
+  }
+  100% {
+      opacity: 1;
+      transform: scale(1);
+  }
+}
+
+/* Saída caindo para a direita */
+@keyframes fallOff {
+  0% {
+      opacity: 1;
+      transform: translateX(0);
+  }
+  30% {
+      opacity: 1;
+      transform: translateX(20px); /* Leve recuo antes de ir */
+  }
+  100% {
+      opacity: 0;
+      transform: translateX(100vw) rotate(20deg); /* Sai da tela girando */
+  }
+}

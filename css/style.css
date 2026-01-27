@@ -1,0 +1,151 @@
+@import url("formulario.css");
+@import url("animacao.css");
+
+
+:root {
+  --primary: #6366f1;
+  --primary-hover: #4f46e5;
+  --bg: #f8fafc;
+  --card: #ffffff;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --danger: #ef4444;
+  --success-bg: #dcfce7;
+  /* Nova cor de fundo para concluídos */
+  --success-text: #166534;
+  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text-main);
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  /* Garante altura total */
+}
+
+.container {
+  width: 100%;
+  max-width: 500px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 2rem;
+  animation: fadeDown 0.8s ease-out;
+  /* Animação do cabeçalho */
+}
+
+header h1 span {
+  color: var(--primary);
+}
+
+
+/* Filtros */
+.filter-section {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 1.5rem;
+  animation: fadeDown 0.8s ease-out 0.4s backwards;
+}
+
+.filter-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-weight: 600;
+  padding-bottom: 5px;
+  position: relative;
+  transition: color 0.3s;
+}
+
+
+/* Lista de Hábitos */
+.habit-list {
+  list-style: none;
+  perspective: 1000px;
+  /* Para efeitos 3D se necessário */
+}
+
+.habit-item {
+  background: var(--card);
+  margin-bottom: 12px;
+  padding: 15px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--shadow);
+  /* Transições importantes para suavidade */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Animação de entrada padrão */
+  animation: slideUpFade 0.4s ease-out forwards;
+  opacity: 0;
+  /* Começa invisível para a animação funcionar */
+}
+
+.habit-item:hover {
+  box-shadow: 0 8px 12px -1px rgb(0 0 0 / 0.15);
+  transform: translateY(-3px);
+}
+
+
+/* Badge de Streak */
+.streak-badge {
+  font-size: 0.8rem;
+  background: #fef3c7;
+  color: #92400e;
+  padding: 4px 10px;
+  border-radius: 20px;
+  margin-left: 8px;
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+  /* Animação de "Pop" ao aparecer */
+  animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+
+.btn-delete {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  opacity: 0.6;
+  padding: 8px;
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+
+.btn-delete:hover {
+  opacity: 1;
+  color: var(--danger);
+  background-color: #fee2e2;
+  transform: rotate(15deg);
+}
+
+
+/* Responsividade */
+@media (max-width: 480px) {
+  body {
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+}
