@@ -12,8 +12,8 @@ let currentFilter = 'all';
 habitForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const text = habitInput.value.trim();
-    
-    if(text === "") return;
+
+    if (text === "") return;
 
     const newHabit = {
         id: Date.now(),
@@ -48,19 +48,14 @@ function toggleHabit(id) {
     saveAndRender();
 }
 
-// --- NOVA FUNÇÃO DE DELETAR COM ANIMAÇÃO ---
+// Deleta animação
 function deleteHabit(id, buttonElement) {
-    // Encontra o elemento <li> pai do botão clicado
     const habitItem = buttonElement.closest('.habit-item');
-    
-    // Adiciona a classe que dispara a animação CSS de saída
+
     habitItem.classList.add('fall');
 
-    // Espera a animação 'fallOff' terminar antes de remover os dados
-    habitItem.addEventListener('animationend', function() {
-        // Remove do array de dados
+    habitItem.addEventListener('animationend', function () {
         habits = habits.filter(habit => habit.id !== id);
-        // Salva e renderiza a lista atualizada
         saveAndRender();
     });
 }
@@ -75,13 +70,12 @@ filterBtns.forEach(btn => {
     });
 });
 
-// Salvar no LocalStorage e Renderizar
+// Salvar no LocalStorage
 function saveAndRender() {
     localStorage.setItem('habits', JSON.stringify(habits));
     renderHabits();
 }
 
-// Renderização na Tela
 function renderHabits() {
     habitList.innerHTML = '';
 
@@ -94,9 +88,7 @@ function renderHabits() {
     filteredHabits.forEach((habit, index) => {
         const li = document.createElement('li');
         li.className = `habit-item ${habit.completed ? 'completed' : ''}`;
-        
-        // Adiciona um pequeno atraso escalonado na entrada de cada item
-        // para um efeito de cascata suave ao carregar a lista
+
         li.style.animationDelay = `${index * 0.05}s`;
 
         li.innerHTML = `
@@ -113,5 +105,4 @@ function renderHabits() {
     });
 }
 
-// Inicialização
 renderHabits();
